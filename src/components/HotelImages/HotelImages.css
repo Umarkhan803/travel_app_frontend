@@ -3,14 +3,20 @@
 }
 
 .primary-image-container {
-  height: 25rem;
+  height: 26rem;
 }
 
 .hotel-img {
   width: 20vw;
   height: 50%;
+  margin: 5px 10px;
 }
-
+.arrImg {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
 .primary-img {
   width: 40vw;
   height: 100%;

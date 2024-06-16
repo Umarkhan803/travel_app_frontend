@@ -26,7 +26,7 @@ export const Payment = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `https://travelapp.cyclic.app/api/hotels/${id}`
+          `https://travel-app-backend-kndt.onrender.com/api/hotels/${id}`
         );
         setSingleHotel(data);
       } catch (err) {
@@ -58,26 +58,35 @@ export const Payment = () => {
     }
 
     const options = {
-      key: "rzp_test_VSdp7X3K39GwBK",
+      key: "rzp_test_A1tHon9XnKdVzr",
       amount: totalPayableAmount * 100,
       currency: "INR",
       name: "TravelO",
-      email: "sakari@gmail.com",
-      contact: "9876543210",
-      description: "Thank you for booking with us",
+      email: "mohammedumarkhan@gmail.com",
+      contact: "7892278414",
+      description: "Thank you for booking ",
 
       handler: ({ payment_id }) => {
-        setHotel({...singleHotel, orderId: uuid(),
-        payment_id, 
-        checkInDate: checkInDate.toLocaleDateString("en-US", { day: "numeric", month: "short" }),
-        checkOutDate: checkOutDate.toLocaleDateString("en-US", { day: "numeric", month: "short" }),
-        totalPayableAmount});
+        setHotel({
+          ...singleHotel,
+          orderId: uuid(),
+          payment_id,
+          checkInDate: checkInDate.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+          }),
+          checkOutDate: checkOutDate.toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "short",
+          }),
+          totalPayableAmount,
+        });
         navigate("/order-summary");
       },
       prefill: {
-        name: "Prakash Sakari",
-        email: "sakari@gmail.com",
-        contact: "9876543210",
+        name: "mohammed umar khan",
+        email: "mohammedumarkhan803@gmail.com",
+        contact: "7892278414",
       },
     };
 
@@ -124,8 +133,7 @@ export const Payment = () => {
           </div>
           <button
             className="button btn-primary btn-reserve cursor btn-pay"
-            onClick={handleConfirmBookingClick}
-          >
+            onClick={handleConfirmBookingClick}>
             Confirm Booking
           </button>
         </div>

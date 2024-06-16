@@ -9,10 +9,16 @@ import {
   Filter,
   AuthModal,
   ProfileDropDown,
-  Alert
+  Alert,
 } from "../../components";
 import "./Home.css";
-import { useCategory, useDate, useFilter, useAuth, useAlert } from "../../context";
+import {
+  useCategory,
+  useDate,
+  useFilter,
+  useAuth,
+  useAlert,
+} from "../../context";
 import {
   getHotelsByPrice,
   getHotelsByRoomsAndBeds,
@@ -46,7 +52,7 @@ export const Home = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `https://travelapp.cyclic.app/api/hotels?category=${hotelCategory}`
+          `https://travel-app-backend-kndt.onrender.com/api/hotels?category=${hotelCategory}`
         );
 
         setTestData(data);
@@ -56,7 +62,6 @@ export const Home = () => {
       }
     })();
   }, [hotelCategory]);
-
 
   const fetchMoreData = () => {
     if (hotels.length >= testData.length) {
@@ -99,7 +104,7 @@ export const Home = () => {
 
   return (
     <div className="relative">
-      <Navbar route="home"/>
+      <Navbar route="home" />
       <Categories />
       {hotels && hotels.length > 0 ? (
         <InfiniteScroll
@@ -109,9 +114,8 @@ export const Home = () => {
           loader={
             hotels.length > 0 && <h3 className="alert-text">Loading...</h3>
           }
-          endMessage={<p className="alert-text">You have seen it all</p>}
-        >
-          <main className="main d-flex align-center wrap gap-larger">
+          endMessage={<p className="alert-text">You have seen it all</p>}>
+          <main className="main d-flex align-center wrap">
             {filteredHotelsByCancelation &&
               filteredHotelsByCancelation.map((hotel) => (
                 <HotelCard key={hotel._id} hotel={hotel} />

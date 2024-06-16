@@ -9,7 +9,7 @@ import {
   AuthProvider,
   WishlistProvider,
   HotelProvider,
-  AlertProvider
+  AlertProvider,
 } from "./context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

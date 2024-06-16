@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCategory, useFilter } from "../../context";
-import Carousel from 'react-elastic-carousel';
+import Carousel from "react-elastic-carousel";
 import "./Categories.css";
 
 export const Categories = () => {
@@ -20,7 +20,7 @@ export const Categories = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          "https://travelapp.cyclic.app/api/category"
+          "https://travel-app-backend-kndt.onrender.com/api/category"
         );
         setCategories(data);
       } catch (err) {
@@ -35,23 +35,31 @@ export const Categories = () => {
 
   return (
     <section className="categories d-flex gap">
-      <Carousel className="carousel" itemsToShow={9} itemsToScroll={6} pagination={false}>
-        {
-          categories && categories.map(({ _id, category }) => <span key={_id} className={`${category === hotelCategory ? "category-color" : ""} item`} onClick={() => handleCategoryClick(category)}>{category}</span>)
-        }
+      <Carousel
+        className="carousel"
+        itemsToShow={9}
+        itemsToScroll={6}
+        pagination={false}>
+        {categories &&
+          categories.map(({ _id, category }) => (
+            <span
+              key={_id}
+              className={`${
+                category === hotelCategory ? "category-color" : ""
+              } item`}
+              onClick={() => handleCategoryClick(category)}>
+              {category}
+            </span>
+          ))}
       </Carousel>
       <div>
         <button
           className="button btn-filter d-flex align-center gap-small cursor-pointer"
-          onClick={handleFilterClick}
-        >
+          onClick={handleFilterClick}>
           <span className="material-icons-outlined">filter_alt</span>
           <span>Filter</span>
         </button>
       </div>
-
     </section>
-
-
   );
 };

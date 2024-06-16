@@ -10,7 +10,7 @@ import {
   AuthModal,
   ProfileDropDown,
   SearchStayWithDate,
-  Alert
+  Alert,
 } from "../../components";
 import "./SingleHotel.css";
 
@@ -26,7 +26,7 @@ export const SingleHotel = () => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `https://travelapp.cyclic.app/api/hotels/${id}`
+          `https://travel-app-backend-kndt.onrender.com/api/hotels/${id}`
         );
         setSingleHotel(data);
       } catch (err) {

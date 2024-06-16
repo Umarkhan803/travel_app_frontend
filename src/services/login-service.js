@@ -5,7 +5,7 @@ export const loginHandler = async (number, password, setAlert) => {
     const {
       data: { accessToken, username },
     } = await axios.post(
-      "https://travelapp.cyclic.app/api/auth/login",
+      "https://travel-app-backend-kndt.onrender.com/api/auth/login",
       {
         number: number,
         password: password,
@@ -18,8 +18,8 @@ export const loginHandler = async (number, password, setAlert) => {
     setAlert({
       open: true,
       message: "Login Successful!",
-      type: "success"
-    })
+      type: "success",
+    });
     return { accessToken, username };
   } catch (err) {
     console.log("unable to login");

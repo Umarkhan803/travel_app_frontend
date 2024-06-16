@@ -11,12 +11,12 @@ export const SearchStayWithDate = () => {
   const { hotelCategory } = useCategory();
 
   const navigate = useNavigate();
-       
+
   useEffect(() => {
     (async () => {
       try {
         const { data } = await axios.get(
-          `https://travelapp.cyclic.app/api/hotels?category=${hotelCategory}`
+          `https://travel-app-backend-kndt.onrender.com/api/hotels?category=${hotelCategory}`
         );
         setHotels(data);
       } catch (err) {
@@ -54,16 +54,16 @@ export const SearchStayWithDate = () => {
 
   const handleSearchButtonClick = () => {
     dateDispatch({
-      type: "CLOSE_SEARCH_MODAL"
+      type: "CLOSE_SEARCH_MODAL",
     });
     navigate(`/hotels/${destination}`);
   };
 
   const handleSearchCloseClick = () => {
     dateDispatch({
-      type: "CLOSE_SEARCH_MODAL"
-    })
-  }
+      type: "CLOSE_SEARCH_MODAL",
+    });
+  };
 
   const destinationOptions = hotels.filter(
     ({ address, city, state, country }) =>
@@ -106,14 +106,17 @@ export const SearchStayWithDate = () => {
         </div>
         <div
           className="search-container d-flex align-center cursor"
-          onClick={handleSearchButtonClick}
-        >
+          onClick={handleSearchButtonClick}>
           <span className="material-icons-outlined">search</span>
           <span>Search</span>
         </div>
-        <button className="button absolute close-search-dest"><span onClick={handleSearchCloseClick} className="highlight material-icons-outlined">
-          highlight_off
-        </span></button>
+        <button className="button absolute close-search-dest">
+          <span
+            onClick={handleSearchCloseClick}
+            className="highlight material-icons-outlined">
+            highlight_off
+          </span>
+        </button>
       </div>
       {isSearchResultOpen && (
         <div className="search-result-container absolute">
@@ -121,8 +124,7 @@ export const SearchStayWithDate = () => {
             destinationOptions.map(({ address, city }) => (
               <p
                 className="p cursor-pointer"
-                onClick={() => handleSearchResultClick(address)}
-              >
+                onClick={() => handleSearchResultClick(address)}>
                 {address}, {city}
               </p>
             ))}

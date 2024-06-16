@@ -1,9 +1,15 @@
 import axios from "axios";
 
-export const signupHandler = async (username, number, email, password, setAlert) => {
+export const signupHandler = async (
+  username,
+  number,
+  email,
+  password,
+  setAlert
+) => {
   try {
     const data = await axios.post(
-      "https://travelapp.cyclic.app/api/auth/register",
+      "https://travel-app-backend-kndt.onrender.com/api/auth/register",
       {
         username: username,
         number: number,
@@ -16,8 +22,8 @@ export const signupHandler = async (username, number, email, password, setAlert)
     setAlert({
       open: true,
       message: `Account Created:: username - ${username}`,
-      type: "success"
-    })
+      type: "success",
+    });
   } catch (err) {
     console.log("error adding user to database");
   }
